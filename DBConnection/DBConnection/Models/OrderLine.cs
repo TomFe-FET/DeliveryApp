@@ -19,8 +19,10 @@ namespace DBConnection.Models
         public String ArticleDescription3 { get; set; }
         [Required]
         public int Amount { get; set; }
+        public String PictureURL { get; set; }
+        public String ReceiptNo { get; set; }
         [Required]
-        public int ReceiptNo { get; set; }
+        public String OrderHeadNo { get; set; }
         [Required]
         public OrderHead OrderHead { get; set; }
 

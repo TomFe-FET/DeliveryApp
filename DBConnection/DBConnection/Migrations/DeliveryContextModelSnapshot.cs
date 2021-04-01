@@ -25,6 +25,10 @@ namespace DBConnection.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Barcode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("DebName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -75,11 +79,15 @@ namespace DBConnection.Migrations
                     b.Property<int>("OrderHeadID")
                         .HasColumnType("int");
 
-                    b.Property<int>("OrderHeadNo")
-                        .HasColumnType("int");
+                    b.Property<string>("OrderHeadNo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ReceiptNo")
-                        .HasColumnType("int");
+                    b.Property<string>("PictureURL")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ReceiptNo")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
 

@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DBConnection.Migrations
 {
     [DbContext(typeof(DeliveryContext))]
-    [Migration("20210310174529_m1")]
+    [Migration("20210401205432_m1")]
     partial class m1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -26,6 +26,10 @@ namespace DBConnection.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Barcode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("DebName")
                         .IsRequired()
@@ -70,31 +74,35 @@ namespace DBConnection.Migrations
                     b.Property<int>("ArticleNo")
                         .HasColumnType("int");
 
-                    b.Property<int>("DeliveryHeadID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("DeliveryHeadNo")
-                        .HasColumnType("int");
-
                     b.Property<string>("LinesID")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ReceiptNo")
+                    b.Property<int>("OrderHeadID")
                         .HasColumnType("int");
+
+                    b.Property<string>("OrderHeadNo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PictureURL")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ReceiptNo")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
 
-                    b.HasIndex("DeliveryHeadID");
+                    b.HasIndex("OrderHeadID");
 
                     b.ToTable("OrderLines");
                 });
 
             modelBuilder.Entity("DBConnection.Models.OrderLine", b =>
                 {
-                    b.HasOne("DBConnection.Models.OrderHead", "DeliveryHead")
+                    b.HasOne("DBConnection.Models.OrderHead", "OrderHead")
                         .WithMany("OrderLines")
-                        .HasForeignKey("DeliveryHeadID")
+                        .HasForeignKey("OrderHeadID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
