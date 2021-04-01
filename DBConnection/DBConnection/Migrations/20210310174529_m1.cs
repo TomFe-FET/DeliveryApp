@@ -15,8 +15,7 @@ namespace DBConnection.Migrations
                     No = table.Column<string>(nullable: false),
                     DebNo = table.Column<int>(nullable: false),
                     DebName = table.Column<string>(nullable: false),
-                    DebName2 = table.Column<string>(nullable: false),
-                    Barcode = table.Column<string>(nullable: false)
+                    DebName2 = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -35,26 +34,25 @@ namespace DBConnection.Migrations
                     ArticleDescription2 = table.Column<string>(nullable: true),
                     ArticleDescription3 = table.Column<string>(nullable: true),
                     Amount = table.Column<int>(nullable: false),
-                    PictureURL = table.Column<string>(nullable: true),
-                    ReceiptNo = table.Column<string>(nullable: true),
-                    OrderHeadNo = table.Column<string>(nullable: false),
-                    OrderHeadID = table.Column<int>(nullable: false)
+                    ReceiptNo = table.Column<int>(nullable: false),
+                    DeliveryHeadID = table.Column<int>(nullable: false),
+                    DeliveryHeadNo = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_OrderLines", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_OrderLines_OrderHead_OrderHeadID",
-                        column: x => x.OrderHeadID,
+                        name: "FK_OrderLines_OrderHead_DeliveryHeadID",
+                        column: x => x.DeliveryHeadID,
                         principalTable: "OrderHead",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrderLines_OrderHeadID",
+                name: "IX_OrderLines_DeliveryHeadID",
                 table: "OrderLines",
-                column: "OrderHeadID");
+                column: "DeliveryHeadID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

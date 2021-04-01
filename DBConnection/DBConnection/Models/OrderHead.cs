@@ -17,8 +17,6 @@ namespace DBConnection.Models
         public String DebName { get; set; }
         [Required]
         public String DebName2 { get; set; }
-        [Required]
-        public String Barcode { get; set; }
         public ICollection<OrderLine> OrderLines { get; set; }
 
     }

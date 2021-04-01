@@ -21,7 +21,7 @@
     },
     "resourceName": {
       "type": "string",
-      "defaultValue": "DeliveryAppGWS",
+      "defaultValue": "DeliveryApp20210226230757",
       "metadata": {
         "description": "Name of the main resource to be created by this template."
       }

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31005.135
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Function", "Function.csproj", "{4638E016-92EF-4B58-80D5-577C28CA7108}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzureFunction", "AzureFunction.csproj", "{DE0D1C30-036B-4631-8286-FEC55B53276D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4638E016-92EF-4B58-80D5-577C28CA7108}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4638E016-92EF-4B58-80D5-577C28CA7108}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4638E016-92EF-4B58-80D5-577C28CA7108}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4638E016-92EF-4B58-80D5-577C28CA7108}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE0D1C30-036B-4631-8286-FEC55B53276D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE0D1C30-036B-4631-8286-FEC55B53276D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE0D1C30-036B-4631-8286-FEC55B53276D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE0D1C30-036B-4631-8286-FEC55B53276D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {ABF2B7F6-F759-4F04-962A-646FEB301721}
+		SolutionGuid = {B1811757-F9E3-45EB-B4B5-D1CA4C706A89}
 	EndGlobalSection
 EndGlobal
