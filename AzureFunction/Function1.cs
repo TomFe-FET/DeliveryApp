@@ -1,22 +1,23 @@
+using System;
 using System.IO;
 using System.Threading.Tasks;
-using DBConnection;
-using DBConnection.Models;
-using DeliveryAppDTO;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using DBConnection;
+using DBConnection.Models;
+using DeliveryAppDTO;
 
-namespace Function
+namespace AzureFunction
 {
     public class Function1
     {
         private readonly DeliveryContext _deliveryContext;
 
-        public Function1(DeliveryContext ldeliveryContext) => _deliveryContext = ldeliveryContext;
+        public Function1(DeliveryContext deliveryContext) => _deliveryContext = deliveryContext;
 
 
         [FunctionName("BCToSQL")]
@@ -42,24 +43,20 @@ namespace Function
                             No = orderHeadDTO.No,
                             Barcode = orderHeadDTO.Barcode
                         };
-                    }
-                    else
+                    } else
                     {
                         orderHead = _deliveryContext.OrderHead.Find(orderHeadDTO.No);
                     }
-                    foreach (OrderLineDTO orderLineDTO in orderHeadDTO.OrderLines)
+                    foreach(OrderLineDTO orderLineDTO in orderHeadDTO.OrderLines)
                     {
-                        OrderLine orderLine = new OrderLine
-                        {
-                            LinesID = orderLineDTO.LinesID,
-                            Amount = orderLineDTO.Amount,
-                            ArticleDescription = orderLineDTO.ArticleDescription,
-                            ArticleDescription2 = orderLineDTO.ArticleDescription2,
-                            ArticleDescription3 = orderLineDTO.ArticleDescription3,
-                            ArticleNo = orderLineDTO.ArticleNo,
-                            OrderHeadNo = orderHead.No,
-                            OrderHead = orderHead
-                        };
+                        OrderLine orderLine = new OrderLine { LinesID = orderLineDTO.LinesID, 
+                                                                Amount = orderLineDTO.Amount,
+                                                                ArticleDescription = orderLineDTO.ArticleDescription, 
+                                                                ArticleDescription2 = orderLineDTO.ArticleDescription2,
+                                                                ArticleDescription3 = orderLineDTO.ArticleDescription3, 
+                                                                ArticleNo = orderLineDTO.ArticleNo,
+                                                                OrderHeadNo = orderHead.No,
+                                                                OrderHead = orderHead };
 
                         log.LogInformation("Saving OrderLines to database");
                         using (var db = _deliveryContext)
@@ -77,10 +74,9 @@ namespace Function
                     }
                 }
             }
-
+            
 
 
         }
     }
 }
-
