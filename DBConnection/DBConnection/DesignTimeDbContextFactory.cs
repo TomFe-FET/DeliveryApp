@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace TransportManagement.DAL
+namespace DBConnection
 {
     // Connection String wird definiert, läuft passiv ab
     public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<DeliveryContext>

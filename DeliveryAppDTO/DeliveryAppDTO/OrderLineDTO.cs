@@ -11,6 +11,6 @@ namespace DeliveryAppDTO
         public String ArticleDescription { get; set; }
         public String ArticleDescription2 { get; set; }
         public String ArticleDescription3 { get; set; }
-        public int Amount { get; set; }
+        public String Amount { get; set; }
     }
 }

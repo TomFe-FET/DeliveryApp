@@ -14,7 +14,6 @@ namespace AzureFunction
     {
         public void Configure(IWebJobsBuilder builder)
         {
-
             var config = new ConfigurationBuilder()
              .SetBasePath(Directory.GetCurrentDirectory())
              .AddJsonFile("local.settings.json", optional: true, reloadOnChange: true)

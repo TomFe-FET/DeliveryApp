@@ -16,7 +16,8 @@ namespace DBConnection.Migrations
                     DebNo = table.Column<int>(nullable: false),
                     DebName = table.Column<string>(nullable: false),
                     DebName2 = table.Column<string>(nullable: false),
-                    Barcode = table.Column<string>(nullable: false)
+                    Barcode = table.Column<string>(nullable: false),
+                    updated = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -34,7 +35,7 @@ namespace DBConnection.Migrations
                     ArticleDescription = table.Column<string>(nullable: false),
                     ArticleDescription2 = table.Column<string>(nullable: true),
                     ArticleDescription3 = table.Column<string>(nullable: true),
-                    Amount = table.Column<int>(nullable: false),
+                    Amount = table.Column<string>(nullable: false),
                     PictureURL = table.Column<string>(nullable: true),
                     ReceiptNo = table.Column<string>(nullable: true),
                     OrderHeadNo = table.Column<string>(nullable: false),

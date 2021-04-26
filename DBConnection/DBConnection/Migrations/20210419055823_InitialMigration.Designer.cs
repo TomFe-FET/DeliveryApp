@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DBConnection.Migrations
 {
     [DbContext(typeof(DeliveryContext))]
-    [Migration("20210401205432_m1")]
-    partial class m1
+    [Migration("20210419055823_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -46,6 +46,9 @@ namespace DBConnection.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("Updated")
+                        .HasColumnType("bit");
+
                     b.HasKey("ID");
 
                     b.ToTable("OrderHead");
@@ -58,8 +61,9 @@ namespace DBConnection.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Amount")
-                        .HasColumnType("int");
+                    b.Property<string>("Amount")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ArticleDescription")
                         .IsRequired()
