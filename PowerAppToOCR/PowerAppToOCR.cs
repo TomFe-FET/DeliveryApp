@@ -44,7 +44,7 @@ namespace PowerAppToOCR
                     string pictureURL = "https://deliveryappblobstorage.blob.core.windows.net/bonstorage/" + name + "?sv=2020-02-10&ss=bfqt&srt=sco&sp=rwdlacupx&se=2024-08-13T17:35:48Z&st=2021-04-12T09:35:48Z&spr=https&sig=O0YDUvYJvbdPM4a9Nrow1fn4rXiKVAUYXQcf6uoywgY%3D";
                     if (!(subname.Equals("MC")))
                     {
-                        formrecognizer ocr = new formrecognizer();
+                        Formrecognizer ocr = new Formrecognizer();
                         ocr.Run(pictureURL);
                         if (ocr.newAmount.Equals(""))
                         {
@@ -68,6 +68,7 @@ namespace PowerAppToOCR
                     _deliveryContext.SaveChanges();
                 } catch
                 {
+                    log.LogError("Error: Couldn't save pictureURL in Database.");
                 }
                
             }

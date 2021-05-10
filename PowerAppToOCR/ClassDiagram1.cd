@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="PowerAppToOCR.PowerAppToOCR">
+    <Position X="2.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAI=</HashCode>
+      <FileName>PowerAppToOCR.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AzureFunction.FunctionStartup">
+    <Position X="4.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Startup.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PowerAppToOCR.formrecognizer">
+    <Position X="6.5" Y="1" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAQASIAAAAACAAAgAAAAAAAEAAAAAAAAI=</HashCode>
+      <FileName>formrecognizer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

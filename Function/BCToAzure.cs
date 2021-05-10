@@ -15,53 +15,34 @@ using Newtonsoft.Json;
 
 namespace Function
 {
-    public class Function1
+    public class BCToAzure
     {
         private readonly DeliveryContext _deliveryContext;
 
-        public Function1(DeliveryContext deliveryContext) => _deliveryContext = deliveryContext;
+        public BCToAzure(DeliveryContext deliveryContext) => _deliveryContext = deliveryContext;
 
 
         [FunctionName("postOrder")]
-        public async Task postOrders(
+        public async Task PostOrders(
             [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = null)] HttpRequest req,
             ILogger log)
         {
-            string[] args = new string[32];
             log.LogInformation("Received new Delievery");
             if (req != null)
             {
                 var content = await new StreamReader(req.Body).ReadToEndAsync();
                 OrderHeadDTO orderHeadDTO = JsonConvert.DeserializeObject<OrderHeadDTO>(content);
-                OrderHead orderHead;
+                
                 if (orderHeadDTO != null)
                 {
-                    string newBarcode = orderHeadDTO.Barcode.Substring(1, orderHeadDTO.Barcode.Length - 2);
-                    orderHead = new OrderHead
-                    {
-                        DebName = orderHeadDTO.DebName,
-                        DebName2 = orderHeadDTO.DebName2,
-                        DebNo = orderHeadDTO.DebNo,
-                        No = orderHeadDTO.No,
-                        Barcode = newBarcode,
-                        Updated = false
-                    };
+                    OrderHead orderHead = CreateOrderHeadFromDTO(orderHeadDTO);
                     log.LogInformation("Saving OrderHead to database");
                     _deliveryContext.OrderHead.Add(orderHead);
                     await _deliveryContext.SaveChangesAsync();
+
                     foreach (OrderLineDTO orderLineDTO in orderHeadDTO.OrderLines)
                     {
-                        OrderLine orderLine = new OrderLine
-                        {
-                            LinesID = orderLineDTO.LinesID,
-                            Amount = orderLineDTO.Amount,
-                            ArticleDescription = orderLineDTO.ArticleDescription,
-                            ArticleDescription2 = orderLineDTO.ArticleDescription2,
-                            ArticleDescription3 = orderLineDTO.ArticleDescription3,
-                            ArticleNo = orderLineDTO.ArticleNo,
-                            OrderHeadNo = orderHead.No,
-                            OrderHead = orderHead
-                        };
+                        OrderLine orderLine = CreateOrderLineFromDTO(orderLineDTO, orderHead);
                         log.LogInformation("Saving OrderLines to database");
                         _deliveryContext.OrderLine.Add(orderLine);
                         await _deliveryContext.SaveChangesAsync();
@@ -69,8 +50,38 @@ namespace Function
                 }
             }
         }
+
+        private OrderHead CreateOrderHeadFromDTO(OrderHeadDTO orderHeadDTO)
+        {
+            string generatedBarcode = orderHeadDTO.Barcode.Substring(1, orderHeadDTO.Barcode.Length - 2);
+            return (new OrderHead
+            {
+                DebName = orderHeadDTO.DebName,
+                DebName2 = orderHeadDTO.DebName2,
+                DebNo = orderHeadDTO.DebNo,
+                No = orderHeadDTO.No,
+                Barcode = generatedBarcode,
+                Updated = false
+            });
+        }
+
+        private OrderLine CreateOrderLineFromDTO(OrderLineDTO orderLineDTO, OrderHead orderHead)
+        {
+            return(new OrderLine
+            {
+                LinesID = orderLineDTO.LinesID,
+                Amount = orderLineDTO.Amount,
+                ArticleDescription = orderLineDTO.ArticleDescription,
+                ArticleDescription2 = orderLineDTO.ArticleDescription2,
+                ArticleDescription3 = orderLineDTO.ArticleDescription3,
+                ArticleNo = orderLineDTO.ArticleNo,
+                OrderHeadNo = orderHead.No,
+                OrderHead = orderHead
+            });
+        }
+
         [FunctionName("getUpdatedOrders")]
-        public  string getUpdatedOrders(
+        public  string GetUpdatedOrders(
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequest req,
             ILogger log)
         {
@@ -87,7 +98,7 @@ namespace Function
                     foreach (OrderHead oH in updatedHeads)
                     {
                         //falls mehrere Zeilen zu einem Kopf bestehen müssen alle in die updatedLines aufgenommen werden
-                        List<OrderLine> linesFromHead = getUpdatedLine(oH.ID);
+                        List<OrderLine> linesFromHead = GetUpdatedLine(oH.ID);
                         foreach(OrderLine oL in linesFromHead)
                         {
                             updatedLines.Add(oL);
@@ -108,12 +119,13 @@ namespace Function
             }
         }
 
-        private List<OrderLine> getUpdatedLine(int iD)
-        {
-            return _deliveryContext.OrderLine
-                    .Where(oL => oL.OrderHead.ID == iD)
-                    .ToList();
+                public List<OrderLine> GetUpdatedLine(int iD)
+                {
+                    return _deliveryContext.OrderLine
+                            .Where(oL => oL.OrderHead.ID == iD)
+                            .ToList();
+                } 
+
+            }
         }
-    }
-}
 

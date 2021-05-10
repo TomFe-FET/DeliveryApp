@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="DBConnection.Models.OrderHead">
+    <Position X="1.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEgEAgAAAAAAAAAAAACBAAAAAQACAAAAAAAA=</HashCode>
+      <FileName>Models\OrderHead.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DBConnection.Models.OrderLine">
+    <Position X="3.25" Y="1" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAQAgAAAgAAYEAAAICCCAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\OrderLine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DBConnection.Migrations.DeliveryContextModelSnapshot">
+    <Position X="8.5" Y="3" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>Migrations\DeliveryContextModelSnapshot.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DBConnection.DesignTimeDbContextFactory">
+    <Position X="5.25" Y="3.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DesignTimeDbContextFactory.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DBConnection.DeliveryContext">
+    <Position X="5.25" Y="1" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAAAAAAAAAAAAAAECAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DeliveryContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DBConnection.Migrations.m1">
+    <Position X="7.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAI=</HashCode>
+      <FileName>Migrations\20210419054822_m1.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
